@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#4caf50">
+
+  <title>Salah Tracker</title>
+
+  <!-- App Icon for iPhone / Android -->
+  <link rel="apple-touch-icon" href="assets/mosque.png">
+  <link rel="icon" href="assets/mosque.png">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Style -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- Toggle Buttons -->
+<div class="top-bar">
+  <button id="themeBtn" onclick="toggleTheme()" aria-label="Toggle theme">🌙</button>
+  <button id="langBtn" onclick="toggleLanguage()">AR</button>
+</div>
+
+<!-- Header -->
+<header>
+  <h1 id="appTitle">Salah Tracker</h1>
+  <p id="locationName" class="location-text"></p>
+  <p id="hijriDate" class="date-text"></p>
+  <p id="gregorianDate" class="date-text date-sub"></p>
+</header>
+
+<!-- Daily Progress -->
+<section class="progress-section">
+  <p id="progressLabel" class="progress-label">Today's Progress</p>
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  <p id="progressCount" class="progress-count">0 / 5</p>
+</section>
+
+<!-- Next Prayer Countdown -->
+<section class="card next-card">
+  <p id="nextTitle">Next Prayer</p>
+  <h2 id="nextPrayerName">--</h2>
+  <h3 id="countdown">00:00:00</h3>
+</section>
+
+<!-- Qibla Compass -->
+<section class="card qibla-card" id="qiblaSection">
+  <p id="qiblaTitle" class="qibla-label">Qibla Direction</p>
+  <div class="compass" id="compass">
+    <div class="compass-ring">
+      <span class="compass-n" id="compassN">N</span>
+      <div class="compass-needle" id="qiblaNeedle"></div>
+      <div class="kaaba-icon" id="kaabaIcon">🕋</div>
+    </div>
+  </div>
+  <p id="qiblaDegree" class="qibla-degree"></p>
+</section>
+
+<!-- Prayer List -->
+<section class="list">
+  <!-- Sunrise (info only, not a prayer) -->
+  <div class="item sunrise-item" id="sunrise-item">
+    <div class="item-left">
+      <span class="prayer-icon">🌅</span>
+      <span class="name" id="sunriseName">Sunrise</span>
+    </div>
+    <span class="time" id="timeSunrise">--:--</span>
+  </div>
+
+  <div class="item" id="fajr" onclick="showTimeLeft('fajr')">
+    <div class="item-left">
+      <button class="check-btn" id="checkFajr" onclick="event.stopPropagation(); togglePrayer('fajr')" aria-label="Mark Fajr complete">
+        <span class="check-icon">○</span>
+      </button>
+      <span class="name">Fajr</span>
+    </div>
+    <span class="time" id="timeFajr">--:--</span>
+  </div>
+
+  <div class="item" id="dhuhr" onclick="showTimeLeft('dhuhr')">
+    <div class="item-left">
+      <button class="check-btn" id="checkDhuhr" onclick="event.stopPropagation(); togglePrayer('dhuhr')" aria-label="Mark Dhuhr complete">
+        <span class="check-icon">○</span>
+      </button>
+      <span class="name">Dhuhr</span>
+    </div>
+    <span class="time" id="timeDhuhr">--:--</span>
+  </div>
+
+  <div class="item" id="asr" onclick="showTimeLeft('asr')">
+    <div class="item-left">
+      <button class="check-btn" id="checkAsr" onclick="event.stopPropagation(); togglePrayer('asr')" aria-label="Mark Asr complete">
+        <span class="check-icon">○</span>
+      </button>
+      <span class="name">Asr</span>
+    </div>
+    <span class="time" id="timeAsr">--:--</span>
+  </div>
+
+  <div class="item" id="maghrib" onclick="showTimeLeft('maghrib')">
+    <div class="item-left">
+      <button class="check-btn" id="checkMaghrib" onclick="event.stopPropagation(); togglePrayer('maghrib')" aria-label="Mark Maghrib complete">
+        <span class="check-icon">○</span>
+      </button>
+      <span class="name">Maghrib</span>
+    </div>
+    <span class="time" id="timeMaghrib">--:--</span>
+  </div>
+
+  <div class="item" id="isha" onclick="showTimeLeft('isha')">
+    <div class="item-left">
+      <button class="check-btn" id="checkIsha" onclick="event.stopPropagation(); togglePrayer('isha')" aria-label="Mark Isha complete">
+        <span class="check-icon">○</span>
+      </button>
+      <span class="name">Isha</span>
+    </div>
+    <span class="time" id="timeIsha">--:--</span>
+  </div>
+</section>
+
+<!-- Notification Toggle -->
+<section class="notification-section">
+  <button id="notifBtn" class="notif-btn" onclick="toggleNotifications()">
+    <span id="notifIcon">🔔</span>
+    <span id="notifLabel">Enable Reminders</span>
+  </button>
+</section>
+
+<footer>
+  <p id="calcMethod">Umm al-Qura Calculation</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
